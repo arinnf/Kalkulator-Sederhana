@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="author" content="Afifa Atira">
+        <meta name="description" content="Tugas Praktikum 7">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kalkulator Sederhana</title>
+		<!-- CSS Bootstrap -->
+		<link href="library/bootstrap.min.css" rel="stylesheet"/>
+		<!-- jQuery -->
+		<script src="library/jquery-3.6.0.min.js"></script>
+		<style rel="stylesheet">
+			.btn {
+				width: 80px;
+				height: 80px;
+				margin: 5px;
+				font-size: 2em;
+			}
+			#layar {
+				height: 60px;
+				font-size: 2em;
+			}
+		</style>
+	</head>
+	<body>
+
+		<!-- Script dari jQuery -->
+        <script>
+			$('document').ready(function(){
+				$('#layar').val(0);
+				var nilai1 = $('#layar').val();
+				var nilai2 = '';
+				var nilai3 = '';
+				var operasi = '';
+
+				function aksi(aksi){
+					if(aksi == "+" || aksi == "-" || aksi == "*" || aksi == "/"){
+						nilai2 = parseFloat($('#layar').val());
+						
+						$('#layar').val(0);
+						nilai1 = "";
+						operasi = aksi;
+						
+					}
+					
+					if(aksi == "C"){
+						$('#layar').val(0);
+						nilai1 = "";
+					}
+					if(aksi == "="){
+						hitung(operasi);
+						
+					}
+					
+					if(aksi == "<<"){
+						var temp = $('#layar').val();
+						if(temp !=0){
+							temp = temp.substring(0,temp.length-1);
+							$('#layar').val(temp);
+							nilai1 = $('#layar').val();
+						}
+						
+						if(temp.length == 0){
+							$('#layar').val(0);
+							nilai1 = $('#layar').val();
+						}
+					}
+				}
+				
+				function hitung(operan){
+					if(operan == "+"){
+						
+						nilai3 = parseFloat(nilai1);
+						nilai1 = '';
+						$('#layar').val(nilai2 + nilai3);
+					}
+					
+					if(operan == "-"){
+						
+						nilai3 = parseFloat(nilai1);
+						nilai1 = '';
+						$('#layar').val(nilai2 - nilai3);
+					}
+					
+					if(operan == "*"){
+						
+						nilai3 = parseFloat(nilai1);
+						nilai1 = '';
+						$('#layar').val(nilai2 * nilai3);
+					}
+					
+					if(operan == "/"){
+						
+						nilai3 = parseFloat(nilai1);
+						nilai1 = '';
+						$('#layar').val(nilai2 / nilai3);
+					}
+				}	
+				
+				$('.angka').click(function(){
+					if($('#layar').val()==0){
+						nilai1 ='';
+					}
+					nilai1 += $(this).val();
+					$('#layar').val(nilai1);
+				});
+				
+				$('.aksi').click(function(){
+					aksi($(this).val());
+					
+				});
+				
+			});
+		</script>
+		<!-- Akhir Script jQuery -->
+
+		<!-- Kode untuk Tampilan Kalkulator -->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-6">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<p class="panel-title">Kalkulator Sederhana</p>
+						</div>
+						
+						<div class="panel-body text-center">
+							<form class="" role="form">
+								
+								<input id="layar" type="text" class="form-control text-right"/>
+								<br/>
+								<input type="button" class="btn btn-success angka" value="1" id="satu"/>
+								<input type="button" class="btn btn-success angka" value="2" id="dua"/>
+								<input type="button" class="btn btn-success angka" value="3" id="tiga"/>
+								<input type="button" class="btn btn-success aksi" value="C" id="hapus"/>
+								<input type="button" class="btn btn-success aksi" value="<<" id="backspace"/>
+								<br/>
+								<input type="button" class="btn btn-success angka" value="4" id="empat"/>
+								<input type="button" class="btn btn-success angka" value="5" id="lima"/>
+								<input type="button" class="btn btn-success angka" value="6" id="enam"/>
+								<input type="button" class="btn btn-success aksi" value="+" id="tambah"/>
+								<input type="button" class="btn btn-success aksi" value="-" id="kurang"/>
+								<br/>
+								<input type="button" class="btn btn-success angka" value="7" id="tujuh"/>
+								<input type="button" class="btn btn-success angka" value="8" id="delapan"/>
+								<input type="button" class="btn btn-success angka" value="9" id="sembilan"/>
+								<input type="button" class="btn btn-success aksi" value="*" id="kali"/>
+								<input type="button" class="btn btn-success aksi" value="/" id="bagi"/>
+								<br/>
+								<input type="button" class="btn btn-success angka" value="0" id="kosong"/>
+								<input type="button" class="btn btn-success aksi" value="=" id="samadengan"/>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Akhir dari Kode Tampilan Kalkulator -->
+
+	</body>
+</html>
+
